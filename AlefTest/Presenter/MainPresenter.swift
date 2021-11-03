@@ -11,7 +11,7 @@ protocol PresenterDelegate: AnyObject {
     func updateUI()
 }
 
-class Presenter {
+class MainPresenter {
     
     var numberOfRows: Int = 0
     var childList: [ChildModel] = []

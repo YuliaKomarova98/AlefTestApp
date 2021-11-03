@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
 
     @IBOutlet weak var nameView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var clearChildButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    let presenter = Presenter()
+    let presenter = MainPresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +79,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDataSource {
+extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.numberOfRows
     }
@@ -92,7 +92,7 @@ extension ViewController: UITableViewDataSource {
     }
 }
 
-extension ViewController: UITextFieldDelegate {
+extension MainViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false
@@ -103,16 +103,16 @@ extension ViewController: UITextFieldDelegate {
         
         switch textField {
         case nameTextField:
-            text.isEmpty ? (self.nameLabel.text = "") : (self.nameLabel.text = "Имя")
+            text.isEmpty ? (self.nameLabel.text = "") : (self.nameLabel.text = Constants.name)
         case ageTextField:
-            text.isEmpty ? (self.ageLabel.text = "") : (self.ageLabel.text = "Возраст")
+            text.isEmpty ? (self.ageLabel.text = "") : (self.ageLabel.text = Constants.age)
         default:
             return
         }
     }
 }
 
-extension ViewController {
+extension MainViewController {
     func initializeHideKeyboard(){
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissMyKeyboard))
         view.addGestureRecognizer(tap)
@@ -123,7 +123,7 @@ extension ViewController {
     }
 }
 
-extension ViewController {
+extension MainViewController {
     func subscribeToNotification(_ notification: NSNotification.Name, selector: Selector) {
         NotificationCenter.default.addObserver(self, selector: selector, name: notification, object: nil)
     }
@@ -150,13 +150,13 @@ extension ViewController {
     }
 }
 
-extension ViewController: PresenterDelegate {
+extension MainViewController: PresenterDelegate {
     func updateUI() {
         tableView.reloadData()
     }
 }
 
-extension ViewController: CellDelegate {
+extension MainViewController: CellDelegate {
     func removeChild(id: Int) {
         presenter.removeChild(id: id)
     }

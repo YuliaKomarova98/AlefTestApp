@@ -11,4 +11,6 @@ class Constants {
     static let ChildTableViewCell = "ChildTableViewCell"
     static let nameTextField = "nameTextField"
     static let ageTextField = "ageTextField"
+    static let name = "Имя"
+    static let age = "Возраст"
 }

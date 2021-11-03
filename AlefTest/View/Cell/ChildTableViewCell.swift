@@ -86,9 +86,9 @@ extension ChildTableViewCell: UITextFieldDelegate {
         
         switch textField {
         case nameTextField:
-            text.isEmpty ? (self.nameLabel.text = "") : (self.nameLabel.text = "Имя")
+            text.isEmpty ? (self.nameLabel.text = "") : (self.nameLabel.text = Constants.name)
         case ageTextField:
-            text.isEmpty ? (self.ageLabel.text = "") : (self.ageLabel.text = "Возраст")
+            text.isEmpty ? (self.ageLabel.text = "") : (self.ageLabel.text = Constants.age)
         default:
             return
         }
