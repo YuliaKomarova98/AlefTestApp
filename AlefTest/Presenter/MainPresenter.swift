@@ -8,6 +8,7 @@
 import Foundation
 
 protocol PresenterDelegate: AnyObject {
+    func checkingChildCount()
     func updateUI()
 }
 
@@ -24,6 +25,8 @@ class MainPresenter {
         childList.append(model)
         
         numberOfRows += 1
+        
+        view?.checkingChildCount()
         view?.updateUI()
     }
     
@@ -42,12 +45,13 @@ class MainPresenter {
             childList[id].id -= 1
         }
         
-        if childList.count > 1 {
+        if childList.count > 1 && id != childList.count {
             for i in id...childList.count - 1 {
                 childList[i].id -= 1
             }
         }
         
+        view?.checkingChildCount()
         view?.updateUI()
     }
     

@@ -154,6 +154,16 @@ extension MainViewController {
 }
 
 extension MainViewController: PresenterDelegate {
+    func checkingChildCount() {
+        addChildButton.isHidden = presenter.numberOfRows == 5 ? true : false
+        
+//        if presenter.numberOfRows == 5 {
+//            addChildButton.isHidden = true
+//        } else {
+//            addChildButton.isHidden = false
+//        }
+    }
+    
     func updateUI() {
         tableView.reloadData()
     }
