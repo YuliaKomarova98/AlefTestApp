@@ -23,6 +23,11 @@ class MainViewController: UIViewController {
     
     let presenter = MainPresenter()
     
+    private let viewCornerRadius: CGFloat = 5
+    private let viewBorderWidth: CGFloat = 1
+    private let buttonCornerRadius: CGFloat = 25
+    private let buttonBorderWidth: CGFloat = 2
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,20 +48,20 @@ class MainViewController: UIViewController {
     
     func setupView() {
         
-        nameView.layer.cornerRadius = 5
-        nameView.layer.borderWidth = 1
+        nameView.layer.cornerRadius = viewCornerRadius
+        nameView.layer.borderWidth = viewBorderWidth
         nameView.layer.borderColor = .some(UIColor.lightGray.cgColor)
         
-        ageView.layer.cornerRadius = 5
-        ageView.layer.borderWidth = 1
+        ageView.layer.cornerRadius = viewCornerRadius
+        ageView.layer.borderWidth = viewBorderWidth
         ageView.layer.borderColor = .some(UIColor.lightGray.cgColor)
         
-        addChildButton.layer.cornerRadius = 25
-        addChildButton.layer.borderWidth = 2
+        addChildButton.layer.cornerRadius = buttonCornerRadius
+        addChildButton.layer.borderWidth = buttonBorderWidth
         addChildButton.layer.borderColor = .some(UIColor.systemBlue.cgColor)
         
-        clearChildButton.layer.cornerRadius = 25
-        clearChildButton.layer.borderWidth = 2
+        clearChildButton.layer.cornerRadius = buttonCornerRadius
+        clearChildButton.layer.borderWidth = buttonBorderWidth
         clearChildButton.layer.borderColor = .some(UIColor.red.cgColor)
     }
 
@@ -99,13 +104,11 @@ extension MainViewController: UITextFieldDelegate {
     }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        guard let text = textField.text else { return }
-        
         switch textField {
         case nameTextField:
-            text.isEmpty ? (self.nameLabel.text = "") : (self.nameLabel.text = Constants.name)
+            textField.text?.isEmpty ?? false ? (self.nameLabel.text = "") : (self.nameLabel.text = Constants.name)
         case ageTextField:
-            text.isEmpty ? (self.ageLabel.text = "") : (self.ageLabel.text = Constants.age)
+            textField.text?.isEmpty ?? false ? (self.ageLabel.text = "") : (self.ageLabel.text = Constants.age)
         default:
             return
         }
