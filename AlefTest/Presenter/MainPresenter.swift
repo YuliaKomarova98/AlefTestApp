@@ -58,6 +58,7 @@ class MainPresenter {
     func clearData() {
         numberOfRows = 0
         childList.removeAll()
+        view?.checkingChildCount()
         view?.updateUI()
     }
     
