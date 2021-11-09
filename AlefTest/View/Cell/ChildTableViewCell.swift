@@ -39,23 +39,23 @@ class ChildTableViewCell: UITableViewCell {
     }
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        nameView.layer.cornerRadius = 5
-        nameView.layer.borderWidth = 1
-        nameView.layer.borderColor = .some(UIColor.lightGray.cgColor)
-        
-        ageView.layer.cornerRadius = 5
-        ageView.layer.borderWidth = 1
-        ageView.layer.borderColor = .some(UIColor.lightGray.cgColor)
+        setupViewCell()
         
         nameTextField.delegate = self
         ageTextField.delegate = self
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    func setupViewCell() {
+        let viewCornerRadius: CGFloat = 5
+        let viewBorderWidth: CGFloat = 1
+        
+        nameView.layer.cornerRadius = viewCornerRadius
+        nameView.layer.borderWidth = viewBorderWidth
+        nameView.layer.borderColor = .some(UIColor.lightGray.cgColor)
+        
+        ageView.layer.cornerRadius = viewCornerRadius
+        ageView.layer.borderWidth = viewBorderWidth
+        ageView.layer.borderColor = .some(UIColor.lightGray.cgColor)
     }
 }
 
